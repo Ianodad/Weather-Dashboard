@@ -11,7 +11,6 @@ function Dashboard() {
           <MainContent />
         </div>
       </div>
-      <h1 className="text-3xl font-bold underline">dashboardddsdd</h1>
     </div>
   );
 }
