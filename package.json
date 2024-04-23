@@ -12,6 +12,7 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-grid-layout": "^1.4.4",
     "react-intl": "^6.6.5",
     "react-router-dom": "^6.22.3",
     "zustand": "^4.5.2"

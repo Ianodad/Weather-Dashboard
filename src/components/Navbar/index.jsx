@@ -3,68 +3,49 @@ import React from "react";
 export const Navbar = () => {
   return (
     <header>
-      <nav className="flex flex-wrap items-center justify-between w-full py-4 md:py-0 px-4 text-lg text-gray-700 bg-white">
-        <div>
-          <a href="#"></a>
-        </div>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          id="menu-button"
-          className="h-6 w-6 cursor-pointer md:hidden block"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M4 6h16M4 12h16M4 18h16"
+      <div className="flex items-center justify-between h-16 bg-white border-b border-gray-200">
+        <div className="flex items-center px-4">
+          <button className="text-gray-500 focus:outline-none focus:text-gray-700">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
+          <input
+            className="mx-4 w-full border rounded-md px-4 py-2"
+            type="text"
+            placeholder="Search"
           />
-        </svg>
-        <div
-          className="hidden w-full md:flex md:items-center md:w-auto"
-          id="menu"
-        >
-          <ul
-            className="
-        pt-4
-        text-base text-gray-700
-        md:flex
-        md:justify-between 
-        md:pt-0"
-          >
-            <li>
-              <a className="md:p-4 py-2 block hover:text-purple-400" href="#">
-                Features
-              </a>
-            </li>
-            <li>
-              <a className="md:p-4 py-2 block hover:text-purple-400" href="#">
-                Pricing
-              </a>
-            </li>
-            <li>
-              <a className="md:p-4 py-2 block hover:text-purple-400" href="#">
-                Customers
-              </a>
-            </li>
-            <li>
-              <a className="md:p-4 py-2 block hover:text-purple-400" href="#">
-                Blog
-              </a>
-            </li>
-            <li>
-              <a
-                className="md:p-4 py-2 block hover:text-purple-400 text-purple-500"
-                href="#"
-              >
-                Sign Up
-              </a>
-            </li>
-          </ul>
         </div>
-      </nav>
+        <div className="flex items-center pr-4">
+          <button className="flex items-center text-gray-500 hover:text-gray-700 focus:outline-none focus:text-gray-700">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 19l-7-7 7-7m5 14l7-7-7-7"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
     </header>
   );
 };

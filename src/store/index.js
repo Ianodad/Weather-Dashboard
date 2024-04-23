@@ -11,7 +11,7 @@ export const useMCStore = create(
           ...appStore(...a),
         }),
         {
-          name: "weather-dashboard",
+          name: "SkySight",
           onRehydrateStorage(state) {
             console.error("State on hydrate", state);
           },
