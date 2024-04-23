@@ -3,20 +3,19 @@ import { devtools, persist } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
 import appStore from "./app";
 
-export const useMCStore = create(
+const useSkySiteStore = create(
   devtools(
-    persist(
-      immer(
-        (...a) => ({
-          ...appStore(...a),
-        }),
-        {
-          name: "SkySight",
-          onRehydrateStorage(state) {
-            console.error("State on hydrate", state);
-          },
-        }
-      )
+    immer(
+      (...a) => ({
+        ...appStore(...a),
+      }),
+      {
+        name: "SkySight",
+        onRehydrateStorage(state) {
+          console.error("State on hydrate", state);
+        },
+      }
     )
   )
 );
+export default useSkySiteStore;
