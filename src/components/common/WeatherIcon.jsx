@@ -1,6 +1,11 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 
-export const WeatherIcon = ({ icon, size = "md" }) => {
+export const WeatherIcon = ({
+  icon,
+  size = "md",
+  className: additionalClassName,
+}) => {
   let iconSrc;
   switch (icon) {
     case "sunny":
@@ -35,7 +40,13 @@ export const WeatherIcon = ({ icon, size = "md" }) => {
       className = "h-10 w-10";
   }
 
+  const finalClassName = `${className} ${additionalClassName}`.trim();
+
   return (
-    <img src={iconSrc} className={className} alt={`Weather icon for ${icon}`} />
+    <img
+      src={iconSrc}
+      className={finalClassName}
+      alt={`Weather icon for ${icon}`}
+    />
   );
 };

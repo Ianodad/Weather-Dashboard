@@ -1,19 +1,28 @@
-export const USER_INITIAL_STATE = {
+import { getWindowItem, setWindowItem } from "@utils";
+
+// export const APP_INITIAL_STATE = {
+//   avatar: "",
+//   userName: "",
+//   currentNavigation: "",
+//   darkMode: false,
+//   language: getWindowItem("language") ? getWindowItem("language") : null,
+// };
+
+const appStore = (set, get) => ({
   avatar: "",
   userName: "",
   currentNavigation: "",
   darkMode: false,
-  lang:""
-};
-
-const appStore = (set, get) => ({
-  user: "",
-  userName: "",
-  currentNavigation: "",
+  language: getWindowItem("language") ? getWindowItem("language") : "en",
   setAvatar: {},
   setUserName: {},
   setDarkMode: {},
-  setLanguage: {},
+  setLanguage: () => {
+    set((state) => {
+      state.language = state.language === "en" ? "sw" : "en";
+      setWindowItem("language", state.language);
+    });
+  },
 });
 
 export default appStore;

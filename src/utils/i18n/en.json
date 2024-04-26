@@ -1,0 +1,9 @@
+{
+  "Dashboard.title": "Weather Dashboard",
+  "Dashboard.units": "Units",
+  "Dashboard.imperial": "Imperial",
+  "Dashboard.metric": "Metric",
+  "Dashboard.search": "Search",
+  "Dashboard.searchPlaceholder": "Search for a city",
+  "Dashboard.noResults": "No results"
+}

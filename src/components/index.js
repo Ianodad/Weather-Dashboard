@@ -1,4 +1,7 @@
 export { Navbar } from "@components/Navbar";
 export { Sidebar } from "@components/Sidebar";
+export { Layout } from "@components/Layout";
 export { MainContent } from "@components/MainContent";
-export { WeatherIcon } from "@components/common";
+export * from "@components/common";
+
+// export { WeatherIcon, LangToggle } from "@components/common";
