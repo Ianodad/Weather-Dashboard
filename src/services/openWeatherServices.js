@@ -1,4 +1,4 @@
-const VITE_OPEN_WEATHER_API_KEY = import.meta.env.VITE_OPEN_WEATHER_API_KEY;
+const VITE_OPEN_WEATHER_API = import.meta.env.VITE_OPEN_WEATHER_API;
 const BASE_URL = "https://api.openweathermap.org/data/2.5";
 import axios from "axios";
 import { DateTime } from "luxon";
@@ -9,7 +9,7 @@ const getWeatherData = async (infoType, searchParams) => {
     const response = await axios.get(url, {
       params: {
         ...searchParams,
-        appid: VITE_OPEN_WEATHER_API_KEY,
+        appid: VITE_OPEN_WEATHER_API,
       },
     });
     console.log("response", response);

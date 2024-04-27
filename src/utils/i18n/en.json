@@ -5,5 +5,8 @@
   "Dashboard.metric": "Metric",
   "Dashboard.search": "Search",
   "Dashboard.searchPlaceholder": "Search for a city",
-  "Dashboard.noResults": "No results"
+  "Dashboard.noResults": "No results",
+  "Dashboard.settings": "Settings",
+  "Dashboard.rise": "Rise",
+  "Dashboard.set": "Set"
 }

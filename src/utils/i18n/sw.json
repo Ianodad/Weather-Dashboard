@@ -5,5 +5,8 @@
   "Dashboard.metric": "Metrikali",
   "Dashboard.search": "Tafuta",
   "Dashboard.searchPlaceholder": "Tafuta kwa jina la mji",
-  "Dashboard.noResults": "Hauna matokeo"
+  "Dashboard.noResults": "Hauna matokeo",
+  "Dashboard.settings": "Mipangilio",
+  "Dashboard.rise": "Kuwa",
+  "Dashboard.set": "Kuendeleka"
 }

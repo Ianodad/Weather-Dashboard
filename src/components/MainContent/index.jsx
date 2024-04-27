@@ -5,6 +5,7 @@ import { UilSun, UilSunset } from "@iconscout/react-unicons";
 import { DateTime } from "luxon";
 import { WeatherIcon } from "@components";
 import getFormattedWeatherData from "@services/openWeatherServices";
+import { FormattedMessage } from "react-intl";
 
 const formatToLocalTime = (
   secs,
@@ -30,7 +31,7 @@ export const MainContent = () => {
         const data = await getFormattedWeatherData({
           ...query,
           units,
-          ...{ lang: lang == "en" ? "en" : "ak" },
+          ...{ lang: lang == "en" ? "en" : "af" },
         });
         console.log("weather", data);
         setWeather(data);
@@ -81,8 +82,8 @@ export const MainContent = () => {
 
   return (
     <>
-      {!isLoading && <div>Loading...</div>}
-      {weather && (
+      {isLoading && <div>Loading...</div>}
+      {weather && !isLoading && (
         <div className="bg-gradient-to-tl  from-indigo-300 to-yellow-200 p-4 h-full">
           <ResponsiveGridLayout {...responsiveProps}>
             <div
@@ -111,7 +112,7 @@ export const MainContent = () => {
               <div className="flex flex-row items-center justify-center space-x-2 text-white text-sm py-3">
                 <UilSun className="text-sky-950" />
                 <p className="font-light text-sky-950">
-                  Rise:{" "}
+                  <FormattedMessage id="Dashboard.rise" />:{" "}
                   <span className="font-medium ml-1 text-sky-950">
                     {formatToLocalTime(weather.sunrise, "hh:mm a", lang)}
                   </span>
@@ -120,7 +121,7 @@ export const MainContent = () => {
 
                 <UilSunset className="text-sky-950" />
                 <p className="font-light text-sky-950">
-                  Set:{" "}
+                  <FormattedMessage id="Dashboard.set" />:{" "}
                   <span className="font-medium ml-1">
                     {formatToLocalTime(weather.sunset, "hh:mm a", lang)}
                   </span>
@@ -129,14 +130,13 @@ export const MainContent = () => {
 
                 <UilSun className="text-sky-950" />
                 <p className="font-light text-sky-950">
-                  <span className="font-medium ml-1">{`${weather.temp_max.toFixed()}°`}</span>
+                  <span className="font-medium ml-1">{`${weather.temp_max.toFixed()}°C`}</span>
                 </p>
                 <p className="font-light text-sky-950">|</p>
 
                 <UilSun className="text-sky-950" />
                 <p className="font-light text-sky-950">
-                  Low: 40°C
-                  <span className="font-medium ml-1">{`${weather.temp_min.toFixed()}°`}</span>
+                  <span className="font-medium ml-1">{`${weather.temp_min.toFixed()}°C`}</span>
                 </p>
               </div>
               <ForecastComponent />

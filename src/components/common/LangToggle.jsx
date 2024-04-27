@@ -20,7 +20,7 @@ export const LangToggle = () => {
         <div className="relative">
           <input
             type="checkbox"
-            checked={language == "en" ? true : false}
+            checked={language == "en" ? false : true}
             onChange={handleCheckboxChange}
             className="sr-only"
           />
