@@ -139,7 +139,7 @@ export const MainContent = () => {
                   <span className="font-medium ml-1">{`${weather.temp_min.toFixed()}°C`}</span>
                 </p>
               </div>
-              {/* <ForecastComponent /> */}
+              <ForecastComponent />
             </div>
             {/* <div
               className="h-full w-full bg-blue-500 bg-clip-padding backdrop-filter  backdrop-blur-sm bg-opacity-0 backdrop-saturate-50 backdrop-contrast-100  p-10 rounded-3xl ring-8 ring-white ring-opacity-40"
