@@ -57,7 +57,7 @@ export const MainContent = () => {
         { i: "c", x: 2, y: 0, w: 1, h: 2 },
       ],
       md: [
-        { i: "a", x: 0, y: 0, w: 1, h: 2 },
+        { i: "a", x: 0, y: 0, w: 2, h: 3 },
         { i: "b", x: 3, y: 4, w: 2, h: 4 },
         { i: "c", x: 2, y: 0, w: 1, h: 5 },
       ],
@@ -139,9 +139,9 @@ export const MainContent = () => {
                   <span className="font-medium ml-1">{`${weather.temp_min.toFixed()}°C`}</span>
                 </p>
               </div>
-              <ForecastComponent />
+              {/* <ForecastComponent /> */}
             </div>
-            <div
+            {/* <div
               className="h-full w-full bg-blue-500 bg-clip-padding backdrop-filter  backdrop-blur-sm bg-opacity-0 backdrop-saturate-50 backdrop-contrast-100  p-10 rounded-3xl ring-8 ring-white ring-opacity-40"
               key="b"
             >
@@ -171,13 +171,13 @@ export const MainContent = () => {
                   </div>
                 </div>
               </div>
-            </div>
-            <div
+            </div> */}
+            {/* <div
               className="h-full w-full bg-blue-500 bg-clip-padding backdrop-filter  backdrop-blur-sm bg-opacity-0 backdrop-saturate-50 backdrop-contrast-100  p-10 rounded-3xl ring-8 ring-white ring-opacity-40"
               key="c"
             >
               c
-            </div>
+            </div> */}
           </ResponsiveGridLayout>
         </div>
       )}
