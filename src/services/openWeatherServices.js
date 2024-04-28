@@ -1,10 +1,10 @@
 const VITE_OPEN_WEATHER_API = import.meta.env.VITE_OPEN_WEATHER_API;
-const BASE_URL = "https://api.openweathermap.org/data/2.5";
+const BASE_URL = "https://api.openweathermap.org/data";
 import axios from "axios";
 import { DateTime } from "luxon";
 
-const getWeatherData = async (infoType, searchParams) => {
-  const url = `${BASE_URL}/${infoType}`;
+const getWeatherData = async (infoType, searchParams, version = "2.5") => {
+  const url = `${BASE_URL}/${version}/${infoType}`;
   try {
     const response = await axios.get(url, {
       params: {
@@ -12,7 +12,6 @@ const getWeatherData = async (infoType, searchParams) => {
         appid: VITE_OPEN_WEATHER_API,
       },
     });
-    console.log("response", response);
     return response.data;
   } catch (error) {
     console.error("Error fetching weather data:", error);
@@ -31,13 +30,17 @@ const getFormattedWeatherData = async (searchParams) => {
     const { lat, lon } = formattedCurrentWeather;
 
     // Fetching the forecast weather data and formatting it
-    const formattedForecastWeather = {};
-    // const formattedForecastWeather = await getWeatherData("onecall", {
-    //   lat,
-    //   lon,
-    //   exclude: "current,minutely,alerts",
-    //   units: searchParams.units,
-    // }).then(formatForecastWeather);
+    // const formattedForecastWeather = {};
+    const formattedForecastWeather = await getWeatherData(
+      "onecall",
+      {
+        lat,
+        lon,
+        exclude: "current,minutely,alerts",
+        units: searchParams.units,
+      },
+      "3.0"
+    ).then(formatForecastWeather);
 
     return { ...formattedCurrentWeather, ...formattedForecastWeather };
   } catch (error) {
@@ -94,14 +97,19 @@ const formatForecastWeather = (data) => {
       title: formatToLocalTime(d.dt, timezone, "ccc"),
       temp: d.temp.day,
       icon: d.weather[0].icon,
+      min_temp: d.temp.min,
+      max_temp: d.temp.max,
+      description: d.summary,
     };
   });
 
   hourly = hourly.slice(1, 6).map((d) => {
     return {
-      title: formatToLocalTime(d.dt, timezone, "hh:mm a"),
+      title: d.weather[0].main,
+      time: formatToLocalTime(d.dt, timezone, "hh:mm a"),
       temp: d.temp,
       icon: d.weather[0].icon,
+      description: d.weather[0].description,
     };
   });
 

@@ -57,26 +57,25 @@ export const MainContent = () => {
         { i: "c", x: 2, y: 0, w: 1, h: 2 },
       ],
       md: [
-        { i: "a", x: 0, y: 0, w: 2, h: 3 },
-        { i: "b", x: 3, y: 4, w: 2, h: 4 },
+        { i: "a", x: 0, y: 0, w: 3, h: 3 },
+        { i: "b", x: 3, y: 4, w: 3, h: 4 },
         { i: "c", x: 2, y: 0, w: 1, h: 5 },
       ],
       sm: [
-        { i: "a", x: 0, y: 0, w: 1, h: 2 },
+        { i: "a", x: 0, y: 0, w: 3, h: 3 },
         { i: "b", x: 1, y: 0, w: 2, h: 4 },
         { i: "c", x: 2, y: 0, w: 1, h: 5 },
       ],
       xs: [
-        { i: "a", x: 0, y: 0, w: 1, h: 2 },
+        { i: "a", x: 0, y: 0, w: 1, h: 3 },
         { i: "b", x: 1, y: 0, w: 2, h: 4 },
         { i: "c", x: 2, y: 0, w: 1, h: 5 },
       ],
       xxs: [
-        { i: "a", x: 0, y: 0, w: 1, h: 2 },
+        { i: "a", x: 0, y: 0, w: 1, h: 4 },
         { i: "b", x: 1, y: 0, w: 2, h: 4 },
         { i: "c", x: 2, y: 0, w: 1, h: 5 },
       ],
-      // More layouts for other breakpoints...
     },
   };
 
@@ -139,7 +138,7 @@ export const MainContent = () => {
                   <span className="font-medium ml-1">{`${weather.temp_min.toFixed()}°C`}</span>
                 </p>
               </div>
-              <ForecastComponent />
+              <ForecastComponent foreCastsData={weather.hourly} />
             </div>
             {/* <div
               className="h-full w-full bg-blue-500 bg-clip-padding backdrop-filter  backdrop-blur-sm bg-opacity-0 backdrop-saturate-50 backdrop-contrast-100  p-10 rounded-3xl ring-8 ring-white ring-opacity-40"
@@ -185,20 +184,21 @@ export const MainContent = () => {
   );
 };
 
-const forecastData = [
-  { temperature: "29°C", time: "11:00 AM", icon: "sunny" },
-  { temperature: "31°C", time: "1:00 PM", icon: "sunny" },
-  { temperature: "32°C", time: "3:00 PM", icon: "sunny" },
-  { temperature: "31°C", time: "5:00 PM", icon: "sunny" },
-  { temperature: "27°C", time: "7:00 PM", icon: "cloudy" },
-];
-const ForecastComponent = () => {
+// const forecastData = [
+//   { temperature: "29°C", time: "11:00 AM", icon: "sunny" },
+//   { temperature: "31°C", time: "1:00 PM", icon: "sunny" },
+//   { temperature: "32°C", time: "3:00 PM", icon: "sunny" },
+//   { temperature: "31°C", time: "5:00 PM", icon: "sunny" },
+//   { temperature: "27°C", time: "7:00 PM", icon: "cloudy" },
+// ];
+// eslint-disable-next-line react/prop-types
+const ForecastComponent = ({ foreCastsData }) => {
   return (
     <div className="flex justify-between mt-12">
-      {forecastData.map((data, index) => (
+      {foreCastsData.map((data, index) => (
         <div key={index} className="flex flex-col items-center">
           <span className="font-semibold text-lg text-sky-950">
-            {data.temperature}
+            {`${data.temp.toFixed()}°C`}
           </span>
           <WeatherIcon icon={data.icon} />
           <span className="font-semibold mt-1 text-sm text-sky-950">
