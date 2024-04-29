@@ -82,7 +82,7 @@ export const MainContent = () => {
 
   return (
     <>
-      {isLoading && <div>Loading...</div>}
+      {isLoading && <LoadingScreen />}
       {weather && !isLoading && (
         <div className="bg-gradient-to-tl  from-indigo-300 to-yellow-200 p-4 h-full">
           <ResponsiveGridLayout {...responsiveProps}>
@@ -169,7 +169,7 @@ export const MainContent = () => {
                                     </td>
                                     <td className="whitespace-nowrap px-6 py-4 font-semibold">
                                       <p className="my-2 text-xl text-sky-950">
-                                        {`${day.min_temp.toFixed()}°C`}
+                                        {` ${day.min_temp.toFixed()}°C`}
                                       </p>
                                     </td>
                                     <td className="whitespace-nowrap px-6 py-4 font-semibold">
@@ -196,13 +196,29 @@ export const MainContent = () => {
   );
 };
 
-// const forecastData = [
-//   { temperature: "29°C", time: "11:00 AM", icon: "sunny" },
-//   { temperature: "31°C", time: "1:00 PM", icon: "sunny" },
-//   { temperature: "32°C", time: "3:00 PM", icon: "sunny" },
-//   { temperature: "31°C", time: "5:00 PM", icon: "sunny" },
-//   { temperature: "27°C", time: "7:00 PM", icon: "cloudy" },
-// ];
+const LoadingScreen = () => {
+  return (
+    <div className="flex items-center justify-center w-full h-full">
+      <div className="flex justify-center items-center space-x-1 text-sm text-gray-700">
+        <svg
+          fill="none"
+          className="w-6 h-6 animate-spin"
+          viewBox="0 0 32 32"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            clipRule="evenodd"
+            d="M15.165 8.53a.5.5 0 01-.404.58A7 7 0 1023 16a.5.5 0 011 0 8 8 0 11-9.416-7.874.5.5 0 01.58.404z"
+            fill="currentColor"
+            fillRule="evenodd"
+          />
+        </svg>
+
+        <div>Loading ...</div>
+      </div>
+    </div>
+  );
+};
 const ForecastComponent = ({ foreCastsData }) => {
   return (
     <div className="flex justify-between mt-12">
