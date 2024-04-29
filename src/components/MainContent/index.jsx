@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useState, useEffect } from "react";
 import { Responsive, WidthProvider } from "react-grid-layout";
 import useSkySiteStore from "@store";
@@ -53,13 +54,13 @@ export const MainContent = () => {
     layouts: {
       lg: [
         { i: "a", x: 0, y: 0, w: 2, h: 3 },
-        { i: "b", x: 3, y: 4, w: 1, h: 2 },
-        { i: "c", x: 2, y: 0, w: 1, h: 2 },
+        { i: "b", x: 2, y: 0, w: 1, h: 4 },
+        { i: "c", x: 3, y: 4, w: 1, h: 2 },
       ],
       md: [
         { i: "a", x: 0, y: 0, w: 3, h: 3 },
-        { i: "b", x: 3, y: 4, w: 3, h: 4 },
-        { i: "c", x: 2, y: 0, w: 1, h: 5 },
+        { i: "b", x: 0, y: 0, w: 2, h: 4 },
+        { i: "c", x: 3, y: 4, w: 1, h: 5 },
       ],
       sm: [
         { i: "a", x: 0, y: 0, w: 3, h: 3 },
@@ -140,43 +141,54 @@ export const MainContent = () => {
               </div>
               <ForecastComponent foreCastsData={weather.hourly} />
             </div>
-            {/* <div
+            <div
               className="h-full w-full bg-blue-500 bg-clip-padding backdrop-filter  backdrop-blur-sm bg-opacity-0 backdrop-saturate-50 backdrop-contrast-100  p-10 rounded-3xl ring-8 ring-white ring-opacity-40"
               key="b"
             >
               <div className="flex flex-col">
-                <div className=" text-4xl text-sky-950">
-                  <h1>Tomorrow</h1>
+                <div className="text-3xl text-sky-950 text-center font-bold">
+                  <h1>5 Days Forecast</h1>
                 </div>
                 <div className="flex flex-row items-center justify-between">
                   <div className="flex flex-col">
-                    <WeatherIcon icon="sunny " size="3xl" />
-                    <span className="text-6xl font-bold text-sky-950">
-                      29°C
-                    </span>
-                    <span className="font-semibold mt-1 text-sky-950">
-                      Mudjimba, QLD
-                    </span>
-                  </div>
-                  <div className="w-1/3 border-l border-sky-950 my-auto"></div>
-                  <div className="flex flex-col">
-                    <WeatherIcon icon="sunny " size="3xl" />
-                    <span className="text-6xl font-bold text-sky-950">
-                      29°C
-                    </span>
-                    <span className="font-semibold mt-1 text-sky-950">
-                      Mudjimba, QLD
-                    </span>
+                    <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                      <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+                        <div className="overflow-hidden">
+                          <table className="min-w-full text-center text-sm font-light text-surface dark:text-white">
+                            <tbody>
+                              {weather.daily.map((day, index) => {
+                                return (
+                                  <tr key={index}>
+                                    <td className="whitespace-nowrap px-6 py-4 font-semibold">
+                                      <p className="my-2 text-2xl text-sky-950">
+                                        {day.title}
+                                      </p>
+                                    </td>
+                                    <td className="whitespace-nowrap px-6 py-4">
+                                      <WeatherIcon icon={day.icon} size="xl" />
+                                    </td>
+                                    <td className="whitespace-nowrap px-6 py-4 font-semibold">
+                                      <p className="my-2 text-xl text-sky-950">
+                                        {`${day.min_temp.toFixed()}°C`}
+                                      </p>
+                                    </td>
+                                    <td className="whitespace-nowrap px-6 py-4 font-semibold">
+                                      <p className="my-2 text-xl text-sky-950">
+                                        {`${day.max_temp.toFixed()}°C`}
+                                      </p>
+                                    </td>
+                                  </tr>
+                                );
+                              })}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div> */}
-            {/* <div
-              className="h-full w-full bg-blue-500 bg-clip-padding backdrop-filter  backdrop-blur-sm bg-opacity-0 backdrop-saturate-50 backdrop-contrast-100  p-10 rounded-3xl ring-8 ring-white ring-opacity-40"
-              key="c"
-            >
-              c
-            </div> */}
+            </div>
           </ResponsiveGridLayout>
         </div>
       )}
@@ -191,7 +203,6 @@ export const MainContent = () => {
 //   { temperature: "31°C", time: "5:00 PM", icon: "sunny" },
 //   { temperature: "27°C", time: "7:00 PM", icon: "cloudy" },
 // ];
-// eslint-disable-next-line react/prop-types
 const ForecastComponent = ({ foreCastsData }) => {
   return (
     <div className="flex justify-between mt-12">
