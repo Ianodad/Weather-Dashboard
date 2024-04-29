@@ -22,10 +22,12 @@ export const MainContent = () => {
   const [query, setQuery] = useState({ q: "Nairobi" });
   const [units, setUnits] = useState("metric");
   const [isLoading, setIsLoading] = useState(false);
+  const [isError, setError] = useState(null);
 
   useEffect(() => {
     const fetchWeather = async () => {
       setIsLoading(true);
+      setError(null);
       // const message = query.q ? query.q : "current location.";
 
       try {
@@ -38,6 +40,7 @@ export const MainContent = () => {
         setWeather(data);
       } catch (error) {
         console.error("Error fetching weather data:", error);
+        setError(error);
       } finally {
         setIsLoading(false);
       }
@@ -83,7 +86,8 @@ export const MainContent = () => {
   return (
     <>
       {isLoading && <LoadingScreen />}
-      {weather && !isLoading && (
+      {isError && <ErrorMessage message={isError} />}
+      {weather && !isLoading && !isError && (
         <div className="bg-gradient-to-tl  from-indigo-300 to-yellow-200 p-4 h-full">
           <ResponsiveGridLayout {...responsiveProps}>
             <div
@@ -215,6 +219,23 @@ const LoadingScreen = () => {
         </svg>
 
         <div>Loading ...</div>
+      </div>
+    </div>
+  );
+};
+
+const ErrorMessage = ({ message }) => {
+  console.log(message);
+  return (
+    <div className="flex items-center justify-center w-full h-full">
+      <div className="flex justify-center items-center space-x-1 text-sm text-gray-700">
+        <div
+          className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+          role="alert"
+        >
+          <strong className="font-bold">Error</strong>{" "}
+          <span className="block sm:inline">{message.message}</span>
+        </div>
       </div>
     </div>
   );
