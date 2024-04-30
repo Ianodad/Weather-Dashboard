@@ -96,7 +96,7 @@ export const MainContent = () => {
             >
               <div className="my-2 text-4xl text-sky-950">
                 <h1>
-                  {formatToLocalTime(weather.date, "cccc, dd LLL yyyy", lang)}
+                  {formatToLocalTime(weather.date, "cccc, dd LLL yyyy' | Local time: 'hh:mm a", lang)}
                 </h1>
               </div>
               <div className="flex justify-between">
