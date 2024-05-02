@@ -6,8 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "test": "jest --watch",
-    "coverage": "npm run test -- --coverage --watchAll --collectCoverageFrom='src/components/**/*.{js,jsx}'",
+    "coverage": "vitest run --coverage",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
     "lint": "eslint . --ext js --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },

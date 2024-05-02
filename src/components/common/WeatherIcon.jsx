@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-
+import { cn } from "@utils";
 export const WeatherIcon = ({
   icon,
   size = "md",
@@ -24,6 +24,9 @@ export const WeatherIcon = ({
     case "sm":
       className = "h-6 w-6";
       break;
+    case "md":
+      className = "h-10 w-10";
+      break;
     case "lg":
       className = "h-16 w-16";
       break;
@@ -40,10 +43,12 @@ export const WeatherIcon = ({
       className = "h-10 w-10";
   }
 
-  const finalClassName = `${className} ${additionalClassName}`.trim();
-
+  const finalClassName = additionalClassName
+    ? `${className} ${additionalClassName}`.trim()
+    : className;
   return (
     <img
+      data-testid={`weather-icon-${icon}`}
       src={iconSrc}
       className={finalClassName}
       alt={`Weather icon for ${icon}`}

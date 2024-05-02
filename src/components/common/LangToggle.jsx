@@ -25,8 +25,16 @@ export const LangToggle = () => {
             className="sr-only"
           />
           <div className="block h-8 w-14 rounded-full bg-gray-300 text-center">
-            <span className="inline-block align-middle text-black">SW</span>
-            <span className="inline-block align-middle text-black">EN</span>
+            {language == "sw" && (
+              <span className="inline-block align-middle text-black float-left mt-1 ml-1">
+                SW
+              </span>
+            )}
+            {language == "en" && (
+              <span className="inline-block align-middle text-black float-right mt-1 mr-1">
+                EN
+              </span>
+            )}
           </div>
           <div className="dot absolute left-1 top-1 flex h-6 w-6 items-center justify-center rounded-full bg-white transition">
             <span className="active hidden">

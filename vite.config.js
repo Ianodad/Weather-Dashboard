@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 /// <reference types="vitest" />
-
+/// <reference types="vite/client" />
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
@@ -15,7 +15,9 @@ export default defineConfig({
   },
   test: {
     environment: "jsdom",
-    setupFiles: ["./vitest.setup.ts"],
+    setupFiles: "./viteSetup.js",
+    globals: true,
+    css: true,
   },
   // base: "/Weather-Dashboard/",
   resolve: {
@@ -30,5 +32,6 @@ export default defineConfig({
       "@public": path.resolve(__dirname, "./public"),
       "@utils": path.resolve(__dirname, "./src/utils"),
     },
+    extensions: [".js", ".json", ".jsx", ".mjs", ".ts", ".tsx", ".vue"],
   },
 });
