@@ -5,10 +5,10 @@ import appStore from "./app";
 
 const useSkySiteStore = create(
   devtools(
-    immer(
-      (...a) => ({
+    persist(
+      immer((...a) => ({
         ...appStore(...a),
-      }),
+      })),
       {
         name: "SkySight",
         onRehydrateStorage(state) {

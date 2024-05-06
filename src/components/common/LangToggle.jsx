@@ -5,13 +5,16 @@ import ukFlagRound from "/uk_flag_round.svg";
 
 export const LangToggle = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [language, setLanguage] = useSkySiteStore((state) => [
-    state.language,
-    state.setLanguage,
-  ]);
+  const { language, setLanguage } = useSkySiteStore((state) => ({
+    language: state.language,
+    setLanguage: state.setLanguage,
+  }));
+  const [isChecked, setIsChecked] = useState(language !== "en");
 
   const handleCheckboxChange = () => {
     setLanguage();
+    setIsChecked(!isChecked);
+    // useSkySiteStore.setState({ language: language === "en" ? "sw" : "en" });
   };
 
   return (
@@ -20,9 +23,10 @@ export const LangToggle = () => {
         <div className="relative">
           <input
             type="checkbox"
-            checked={language == "en" ? false : true}
+            checked={isChecked}
             onChange={handleCheckboxChange}
             className="sr-only"
+            data-testid="language-toggle-checkbox"
           />
           <div className="block h-8 w-14 rounded-full bg-gray-300 text-center">
             {language == "sw" && (
