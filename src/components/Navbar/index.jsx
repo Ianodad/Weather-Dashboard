@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { LangToggle } from "@components";
+import { LangToggle, SearchFieldBar } from "@components";
 import { FormattedMessage } from "react-intl";
 
 export const Navbar = () => {
@@ -23,15 +23,7 @@ export const Navbar = () => {
               />
             </svg>
           </button>
-          <FormattedMessage id="Dashboard.search">
-            {(search) => (
-              <input
-                className="mx-4 w-full border rounded-md px-4 py-2"
-                type="text"
-                placeholder={search}
-              />
-            )}
-          </FormattedMessage>
+          <SearchFieldBar />
         </div>
         <div className="flex items-center pr-4 mr-4">
           <LangToggle />

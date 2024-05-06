@@ -16,10 +16,13 @@ const formatToLocalTime = (
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 export const MainContent = () => {
-  const [lang] = useSkySiteStore((state) => [state.language]);
+  const [lang, searchQuery] = useSkySiteStore((state) => [
+    state.language,
+    state.searchQuery,
+  ]);
   // eslint-disable-next-line no-unused-vars
   const [weather, setWeather] = useState(null);
-  const [query, setQuery] = useState({ q: "Nairobi" });
+  const [query, setQuery] = useState("Nairobi");
   const [units, setUnits] = useState("metric");
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setError] = useState(null);
@@ -31,8 +34,9 @@ export const MainContent = () => {
       // const message = query.q ? query.q : "current location.";
 
       try {
+        console.log("searchQuery", searchQuery);
         const data = await getFormattedWeatherData({
-          ...query,
+          ...{ q: searchQuery ? searchQuery : query },
           units,
           ...{ lang: lang == "en" ? "en" : "af" },
         });
@@ -47,7 +51,7 @@ export const MainContent = () => {
     };
 
     fetchWeather();
-  }, [query, units, lang]);
+  }, [query, units, lang, searchQuery]);
 
   const responsiveProps = {
     className: "responsive-grid",
@@ -96,7 +100,11 @@ export const MainContent = () => {
             >
               <div className="my-2 text-4xl text-sky-950">
                 <h1>
-                  {formatToLocalTime(weather.date, "cccc, dd LLL yyyy' | Local time: 'hh:mm a", lang)}
+                  {formatToLocalTime(
+                    weather.date,
+                    "cccc, dd LLL yyyy' | Local time: 'hh:mm a",
+                    lang
+                  )}
                 </h1>
               </div>
               <div className="flex justify-between">

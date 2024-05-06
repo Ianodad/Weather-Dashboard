@@ -6,6 +6,7 @@ const appStore = (set, get) => ({
   currentNavigation: "",
   darkMode: false,
   language: getWindowItem("language") ? getWindowItem("language") : "en",
+  searchQuery: "",
   setAvatar: {},
   setUserName: {},
   setDarkMode: {},
@@ -14,6 +15,9 @@ const appStore = (set, get) => ({
       state.language = state.language === "en" ? "sw" : "en";
       setWindowItem("language", state.language);
     });
+  },
+  setSearchQuery: (query) => {
+    set({ searchQuery: query });
   },
 });
 
