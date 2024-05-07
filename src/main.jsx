@@ -4,13 +4,31 @@ import "./index.css";
 import "../node_modules/react-grid-layout/css/styles.css";
 import "../node_modules/react-resizable/css/styles.css";
 
+import { Layout, DashboardLayout } from "@components";
 import Dashboard from "@pages/Dashboard";
+import Settings from "@pages/Dashboard/Settings";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Dashboard />,
+    element: <Layout />,
+    children: [
+      {
+        path: "/",
+        element: <DashboardLayout />,
+        children: [
+          {
+            path: "/",
+            element: <Dashboard />,
+          },
+          {
+            path: "/settings",
+            element: <Settings />,
+          },
+        ],
+      },
+    ],
   },
 ]);
 

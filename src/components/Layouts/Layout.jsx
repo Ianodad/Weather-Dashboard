@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { IntlProvider, ReactIntlErrorCode } from "react-intl";
 import messages from "@utils/i18n";
 import useSkySiteStore from "@store";
+import { Outlet } from "react-router-dom";
 
 export const Layout = ({ children }) => {
   const [language, setLanguage] = useSkySiteStore((state) => [
@@ -22,7 +23,7 @@ export const Layout = ({ children }) => {
       messages={messages[language]}
       onError={intlError}
     >
-      {children}
+      <Outlet />
     </IntlProvider>
   );
 };
