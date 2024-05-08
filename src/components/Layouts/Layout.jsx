@@ -5,10 +5,10 @@ import messages from "@utils/i18n";
 import useSkySiteStore from "@store";
 import { Outlet } from "react-router-dom";
 
-export const Layout = ({ children }) => {
-  const [language, setLanguage] = useSkySiteStore((state) => [
+export const Layout = () => {
+  const [language, theme] = useSkySiteStore((state) => [
     state.language,
-    state.setLanguage,
+    state.theme,
   ]);
   const intlError = (e) => {
     if ((e.code = ReactIntlErrorCode.MISSING_DATA)) {
@@ -16,6 +16,14 @@ export const Layout = ({ children }) => {
     }
     console.error(e);
   };
+
+  useEffect(() => {
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.add("light");
+    }
+  }, [theme]);
 
   return (
     <IntlProvider

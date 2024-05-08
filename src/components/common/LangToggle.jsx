@@ -9,13 +9,21 @@ export const LangToggle = () => {
     language: state.language,
     setLanguage: state.setLanguage,
   }));
-  const [isChecked, setIsChecked] = useState(language !== "en");
+  const [isChecked, setIsChecked] = useState(language === "en");
 
   const handleCheckboxChange = () => {
     setLanguage();
     setIsChecked(!isChecked);
     // useSkySiteStore.setState({ language: language === "en" ? "sw" : "en" });
   };
+
+  useEffect(() => {
+    if (language === "en") {
+      setIsChecked(true);
+    } else {
+      setIsChecked(false);
+    }
+  }, [language]);
 
   return (
     <>

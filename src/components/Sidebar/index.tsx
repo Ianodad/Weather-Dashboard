@@ -1,18 +1,17 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
-
+import { NavLink } from "react-router-dom";
 export const Sidebar = () => {
   return (
     <div className="hidden md:flex flex-col w-64 bg-gray-800">
-      <div className="flex items-center justify-center h-16 bg-gray-900">
-        <span className="text-white font-bold uppercase">Sidebar</span>
-      </div>
-      <div
-        className="flex flex-col flex-1 overflow-y-aut
-  o"
-      >
+      <NavLink to="/">
+        <div className="flex items-center justify-center h-16 bg-gray-900">
+          <span className="text-white font-bold uppercase">SkySight</span>
+        </div>
+      </NavLink>
+      <div className="flex flex-col flex-1 overflow-y-auto">
         <nav className="flex-1 px-2 py-4 bg-gray-800">
-          <a
+          {/* <a
             href="#"
             className="flex items-center px-4 py-2 text-gray-100 hover:bg-gray-700"
           >
@@ -31,10 +30,10 @@ export const Sidebar = () => {
               />
             </svg>
             <FormattedMessage id="Dashboard.title" />
-          </a>
+          </a> */}
 
-          <a
-            href="#"
+          <NavLink
+            to="/settings"
             className="flex items-center px-4 py-2 mt-2 text-gray-100 hover:bg-gray-700"
           >
             <svg
@@ -52,7 +51,7 @@ export const Sidebar = () => {
               />
             </svg>
             <FormattedMessage id="Dashboard.settings" />
-          </a>
+          </NavLink>
         </nav>
       </div>
     </div>

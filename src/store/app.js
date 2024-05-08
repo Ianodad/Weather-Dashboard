@@ -4,12 +4,12 @@ const appStore = (set, get) => ({
   avatar: "",
   userName: "",
   currentNavigation: "",
-  darkMode: false,
+  theme: "light",
   language: getWindowItem("language") ? getWindowItem("language") : "en",
+  temperature: "°F",
   searchQuery: "",
   setAvatar: {},
   setUserName: {},
-  setDarkMode: {},
   setLanguage: () => {
     set((state) => {
       state.language = state.language === "en" ? "sw" : "en";
@@ -18,6 +18,18 @@ const appStore = (set, get) => ({
   },
   setSearchQuery: (query) => {
     set({ searchQuery: query });
+  },
+  setTheme: () => {
+    set((state) => {
+      state.theme = state.theme === "light" ? "dark" : "light";
+      console.log(state.theme);
+    });
+  },
+  setTemperature: () => {
+    set((state) => {
+      state.temperature = state.temperature === "°F" ? "°C" : "°F";
+      console.log(state.temperature);
+    });
   },
 });
 
