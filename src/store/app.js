@@ -4,9 +4,11 @@ const appStore = (set, get) => ({
   avatar: "",
   userName: "",
   currentNavigation: "",
-  theme: "light",
+  theme: getWindowItem("theme") ? getWindowItem("theme") : "light",
   language: getWindowItem("language") ? getWindowItem("language") : "en",
-  temperature: "°F",
+  temperature: getWindowItem("temperature")
+    ? getWindowItem("temperature")
+    : "°C",
   searchQuery: "",
   setAvatar: {},
   setUserName: {},
@@ -22,13 +24,13 @@ const appStore = (set, get) => ({
   setTheme: () => {
     set((state) => {
       state.theme = state.theme === "light" ? "dark" : "light";
-      console.log(state.theme);
+      setWindowItem("theme", state.theme);
     });
   },
   setTemperature: () => {
     set((state) => {
       state.temperature = state.temperature === "°F" ? "°C" : "°F";
-      console.log(state.temperature);
+      setWindowItem("temperature", state.temperature);
     });
   },
 });

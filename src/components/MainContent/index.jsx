@@ -7,7 +7,7 @@ import { DateTime } from "luxon";
 import { WeatherIcon } from "@components";
 import getFormattedWeatherData from "@services/openWeatherServices";
 import { FormattedMessage } from "react-intl";
-
+import { cn } from "@utils";
 const formatToLocalTime = (
   secs,
   format = "cccc, dd LLL yyyy' | Local time: 'hh:mm a",
@@ -16,14 +16,18 @@ const formatToLocalTime = (
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 export const MainContent = () => {
-  const [lang, searchQuery] = useSkySiteStore((state) => [
+  const [lang, searchQuery, temperature, theme] = useSkySiteStore((state) => [
     state.language,
     state.searchQuery,
+    state.temperature,
+    state.theme,
   ]);
   // eslint-disable-next-line no-unused-vars
   const [weather, setWeather] = useState(null);
   const [query, setQuery] = useState("Nairobi");
-  const [units, setUnits] = useState("metric");
+  const [units, setUnits] = useState(
+    temperature === "°F" ? "imperial" : "metric"
+  );
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setError] = useState(null);
 
@@ -52,6 +56,15 @@ export const MainContent = () => {
 
     fetchWeather();
   }, [query, units, lang, searchQuery]);
+
+  // add useEffect to listen to theme
+  useEffect(() => {
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [theme]);
 
   const responsiveProps = {
     className: "responsive-grid",
@@ -87,18 +100,26 @@ export const MainContent = () => {
     },
   };
 
+  const lightBackGroundColor =
+    "bg-gradient-to-tl from-indigo-300 to-yellow-200";
+  const darkBackGroundColor = "bg-gradient-to-tl from-indigo-900 to-yellow-900";
   return (
     <>
       {isLoading && <LoadingScreen />}
       {isError && <ErrorMessage message={isError} />}
       {weather && !isLoading && !isError && (
-        <div className="bg-gradient-to-tl  from-indigo-300 to-yellow-200 p-4 h-full">
+        <div
+          className={cn("p-4 h-full", {
+            [lightBackGroundColor]: theme === "light",
+            [darkBackGroundColor]: theme === "dark",
+          })}
+        >
           <ResponsiveGridLayout {...responsiveProps}>
             <div
               className="h-full w-full bg-blue-500 bg-clip-padding backdrop-filter  backdrop-blur-sm bg-opacity-0 backdrop-saturate-50 backdrop-contrast-100  p-10 rounded-3xl ring-8 ring-white ring-opacity-40"
               key="a"
             >
-              <div className="my-2 text-4xl text-sky-950">
+              <div className="my-2 text-4xl text-sky-950 dark:text-slate-50">
                 <h1>
                   {formatToLocalTime(
                     weather.date,
@@ -109,56 +130,60 @@ export const MainContent = () => {
               </div>
               <div className="flex justify-between">
                 <div className="flex flex-col">
-                  <span className="text-6xl font-bold text-sky-950">
-                    {weather.temp.toFixed()}°C
+                  <span className="text-6xl font-bold text-sky-950 dark:text-slate-50">
+                    {weather.temp.toFixed()}
+                    {temperature}
                   </span>
-                  <span className="font-semibold mt-1 text-sky-950">
+                  <span className="font-semibold mt-1 text-sky-950 dark:text-slate-50">
                     {weather.name}, {weather.country}
                   </span>
                 </div>
                 <WeatherIcon
-                  className="h-36 w-36 fill-current text-sky-950"
+                  className="h-36 w-36 fill-current text-sky-950 dark:text-slate-50"
                   icon={weather.icon}
                 />
               </div>
               <div className="flex flex-row items-center justify-center space-x-2 text-white text-sm py-3">
-                <UilSun className="text-sky-950" />
-                <p className="font-light text-sky-950">
+                <UilSun className="text-sky-950 dark:text-slate-50" />
+                <p className="font-light text-sky-950 dark:text-slate-50">
                   <FormattedMessage id="Dashboard.rise" />:{" "}
-                  <span className="font-medium ml-1 text-sky-950">
+                  <span className="font-medium ml-1 text-sky-950 dark:text-slate-50">
                     {formatToLocalTime(weather.sunrise, "hh:mm a", lang)}
                   </span>
                 </p>
-                <p className="font-light text-sky-950">|</p>
+                <p className="font-light text-sky-950 dark:text-slate-50">|</p>
 
-                <UilSunset className="text-sky-950" />
-                <p className="font-light text-sky-950">
+                <UilSunset className="text-sky-950 dark:text-slate-50" />
+                <p className="font-light text-sky-950 dark:text-slate-50">
                   <FormattedMessage id="Dashboard.set" />:{" "}
                   <span className="font-medium ml-1">
                     {formatToLocalTime(weather.sunset, "hh:mm a", lang)}
                   </span>
                 </p>
-                <p className="font-light text-sky-950">|</p>
+                <p className="font-light text-sky-950 dark:text-slate-50">|</p>
 
-                <UilSun className="text-sky-950" />
-                <p className="font-light text-sky-950">
-                  <span className="font-medium ml-1">{`${weather.temp_max.toFixed()}°C`}</span>
+                <UilSun className="text-sky-950 dark:text-slate-50" />
+                <p className="font-light text-sky-950 dark:text-slate-50">
+                  <span className="font-medium ml-1">{`${weather.temp_max.toFixed()}${temperature}`}</span>
                 </p>
-                <p className="font-light text-sky-950">|</p>
+                <p className="font-light text-sky-950 dark:text-slate-50">|</p>
 
-                <UilSun className="text-sky-950" />
-                <p className="font-light text-sky-950">
-                  <span className="font-medium ml-1">{`${weather.temp_min.toFixed()}°C`}</span>
+                <UilSun className="text-sky-950 dark:text-slate-50" />
+                <p className="font-light text-sky-950 dark:text-slate-50">
+                  <span className="font-medium ml-1">{`${weather.temp_min.toFixed()}${temperature}`}</span>
                 </p>
               </div>
-              <ForecastComponent foreCastsData={weather.hourly} />
+              <ForecastComponent
+                foreCastsData={weather.hourly}
+                temperature={temperature}
+              />
             </div>
             <div
               className="h-full w-full bg-blue-500 bg-clip-padding backdrop-filter  backdrop-blur-sm bg-opacity-0 backdrop-saturate-50 backdrop-contrast-100  p-10 rounded-3xl ring-8 ring-white ring-opacity-40"
               key="b"
             >
               <div className="flex flex-col">
-                <div className="text-3xl text-sky-950 text-center font-bold">
+                <div className="text-3xl text-sky-950 dark:text-slate-50 text-center font-bold">
                   <h1>5 Days Forecast</h1>
                 </div>
                 <div className="flex flex-row items-center justify-between">
@@ -172,7 +197,7 @@ export const MainContent = () => {
                                 return (
                                   <tr key={index}>
                                     <td className="whitespace-nowrap px-6 py-4 font-semibold">
-                                      <p className="my-2 text-2xl text-sky-950">
+                                      <p className="my-2 text-2xl text-sky-950 dark:text-slate-50">
                                         {day.title}
                                       </p>
                                     </td>
@@ -180,13 +205,13 @@ export const MainContent = () => {
                                       <WeatherIcon icon={day.icon} size="xl" />
                                     </td>
                                     <td className="whitespace-nowrap px-6 py-4 font-semibold">
-                                      <p className="my-2 text-xl text-sky-950">
-                                        {` ${day.min_temp.toFixed()}°C`}
+                                      <p className="my-2 text-xl text-sky-950 dark:text-slate-50">
+                                        {` ${day.min_temp.toFixed()}${temperature}`}
                                       </p>
                                     </td>
                                     <td className="whitespace-nowrap px-6 py-4 font-semibold">
-                                      <p className="my-2 text-xl text-sky-950">
-                                        {`${day.max_temp.toFixed()}°C`}
+                                      <p className="my-2 text-xl text-sky-950 dark:text-slate-50">
+                                        {`${day.max_temp.toFixed()}${temperature}`}
                                       </p>
                                     </td>
                                   </tr>
@@ -248,19 +273,19 @@ const ErrorMessage = ({ message }) => {
     </div>
   );
 };
-const ForecastComponent = ({ foreCastsData }) => {
+const ForecastComponent = ({ foreCastsData, temperature }) => {
   return (
     <div className="flex justify-between mt-12">
       {foreCastsData.map((data, index) => (
         <div key={index} className="flex flex-col items-center">
-          <span className="font-semibold text-lg text-sky-950">
-            {`${data.temp.toFixed()}°C`}
+          <span className="font-semibold text-lg text-sky-950 dark:text-slate-50">
+            {`${data.temp.toFixed()}${temperature}`}
           </span>
           <WeatherIcon icon={data.icon} />
-          <span className="font-semibold mt-1 text-sm text-sky-950">
+          <span className="font-semibold mt-1 text-sm text-sky-950 dark:text-slate-50">
             {data.time.split(" ")[0]}
           </span>
-          <span className="text-xs font-semibold text-sky-950">
+          <span className="text-xs font-semibold text-sky-950 dark:text-slate-50">
             {data.time.split(" ")[1]}
           </span>
         </div>
