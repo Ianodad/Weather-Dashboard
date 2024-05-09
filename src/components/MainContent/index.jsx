@@ -102,7 +102,7 @@ export const MainContent = () => {
 
   const lightBackGroundColor =
     "bg-gradient-to-tl from-indigo-300 to-yellow-200";
-  const darkBackGroundColor = "bg-gradient-to-tl from-indigo-900 to-yellow-900";
+  const darkBackGroundColor = "bg-gradient-to-tl from-neutral-900 to-slate-900";
   return (
     <>
       {isLoading && <LoadingScreen />}
@@ -116,7 +116,7 @@ export const MainContent = () => {
         >
           <ResponsiveGridLayout {...responsiveProps}>
             <div
-              className="h-full w-full bg-blue-500 bg-clip-padding backdrop-filter  backdrop-blur-sm bg-opacity-0 backdrop-saturate-50 backdrop-contrast-100  p-10 rounded-3xl ring-8 ring-white ring-opacity-40"
+              className="h-full w-full bg-blue-500 bg-clip-padding backdrop-filter  backdrop-blur-sm bg-opacity-0 backdrop-saturate-50 backdrop-contrast-100  p-10 rounded-3xl ring-8 ring-white dark:ring-black ring-opacity-40"
               key="a"
             >
               <div className="my-2 text-4xl text-sky-950 dark:text-slate-50">
