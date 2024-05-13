@@ -10,6 +10,7 @@ export const LangToggle = () => {
     setLanguage: state.setLanguage,
   }));
   const [isChecked, setIsChecked] = useState(language === "en");
+  
 
   const handleCheckboxChange = () => {
     setLanguage();

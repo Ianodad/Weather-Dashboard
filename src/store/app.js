@@ -1,8 +1,16 @@
-import { getWindowItem, setWindowItem } from "@utils";
+import {
+  getWindowItem,
+  setWindowItem,
+  generateUsername,
+  generatorAvatar,
+} from "@utils";
 
+// eslint-disable-next-line no-unused-vars
 const appStore = (set, get) => ({
-  avatar: "",
-  userName: "",
+  avatar: getWindowItem("avatar") ? getWindowItem("avatar") : generatorAvatar(),
+  userName: getWindowItem("userName")
+    ? getWindowItem("userName")
+    : generateUsername(),
   currentNavigation: "",
   theme: getWindowItem("theme") ? getWindowItem("theme") : "light",
   language: getWindowItem("language") ? getWindowItem("language") : "en",
