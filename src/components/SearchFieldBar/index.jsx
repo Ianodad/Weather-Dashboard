@@ -39,7 +39,7 @@ export const SearchFieldBar = () => {
         type="submit"
         className="bg-blue-950 hover:bg-blue-900 text-white dark:bg-white dark:text-blue-950 font-bold py-2 px-4 rounded-full"
       >
-        Search
+        <FormattedMessage id="Dashboard.search" />
       </button>
     </form>
   );

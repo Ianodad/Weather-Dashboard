@@ -10,42 +10,70 @@
   - [Table of Contents](#table-of-contents)
   - [Overview](#overview)
   - [Features](#features)
-  - [Installation](#installation)
-    - [Requirements](#requirements)
+  - [Getting Started](#getting-started)
+    - [Prerequisites](#prerequisites)
     - [Steps](#steps)
+    - [Creating and Adding `.env` File with API Key](#creating-and-adding-env-file-with-api-key)
   - [Usage](#usage)
-  - [Configuration](#configuration)
   - [Testing](#testing)
-  - [Contributing](#contributing)
+  - [Technology Stack](#technology-stack)
+  - [Screenshots](#screenshots)
+    - [Dashboard View](#dashboard-view)
+    - [Dark Mode](#dark-mode)
+    - [Language Selection (Swahili)](#language-selection-swahili)
+    - [Temperature Selection (F)](#temperature-selection-f)
   - [License](#license)
   - [Contact](#contact)
 
 ## Overview
 
-A brief description of what the project does, its purpose, and any important background information.
+The Weather Dashboard is a dynamic, user-friendly application designed to provide real-time weather updates. Leveraging the OpenWeather API, this dashboard allows users to view weather data for the current day by hour or see forecasts for the upcoming days.
+
+
 
 ## Features
 
-- **Feature 1**: Description of feature 1.
-- **Feature 2**: Description of feature 2.
-- **Feature 3**: Description of feature 3.
+-  **Real-Time Weather Data**: Displays current weather conditions, including temperature, humidity, wind speed, and atmospheric pressure.
+- **Hourly Forecast**: Provides detailed weather predictions for each hour of the current day.
+- **Daily Forecast**: Offers a weather outlook for the following days, allowing users to plan ahead.
+- **Search Functionality**: Users can search for weather data based on city or geographical coordinates.
+- **Language Selection**: An option for users to switch between English and Swahili, making the dashboard accessible to a broader audience.
+- **Temperature Units Selection**: Ability to toggle between Fahrenheit (°F) and Celsius (°C) for temperature readings, catering to user preferences.
+- **Dark Mode**: A feature allowing users to switch between light and dark themes for better readability and to reduce eye strain, especially in low-light environments.
 
-## Installation
+## Getting Started
 
-### Requirements
+### Prerequisites
 
-- Requirement 1
-- Requirement 2
-- Requirement 3
+- [Node.js](https://nodejs.org/) (preferably the latest LTS version)
+- npm or yarn (Node Package Manager or Yarn Package Manager)
 
 ### Steps
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/your-username/your-project.git
+    git clone https://github.com/Ianodad/Weather-Dashboard.git
     cd your-project
     ```
-2. Install dependencies:
+3. Create an .env file and an openAI key. 
+   VITE_OPEN_WEATHER_API=""
+
+   ### Creating and Adding `.env` File with API Key
+
+   1. Create a `.env` file in the root directory of your project:
+    ```sh
+    touch .env
+    ```
+
+   2. Add the following line to the `.env` file, replacing `YOUR_API_KEY` with your actual OpenWeather API key:
+    ```sh
+    VITE_OPEN_WEATHER_API=YOUR_API_KEY
+    ```
+
+   3. Your project should now be able to access the API key via `import.meta.env.VITE_OPEN_WEATHER_API;`.
+
+
+4. Install dependencies:
     ```sh
     npm install
     ```
@@ -55,20 +83,17 @@ A brief description of what the project does, its purpose, and any important bac
 Explain how to run the project. Include code snippets, if necessary.
 
 ```sh
-npm start
+npm run dev
 ```
 
-## Configuration
+Open your browser and navigate to `http://localhost:3000` to view the application.
 
-Describe any configuration options and the file locations where they can be set.
 
-```sh
-# config.js
-module.exports = {
-  apiKey: 'your-api-key',
-  dbUri: 'your-database-uri',
-};
-```
+1. Use the controls at the top of the dashboard to:
+   - Change the language between English and Swahili.
+   - Toggle temperature units between Fahrenheit and Celsius.
+   - Switch between light and dark mode.
+2. Search for weather data by entering a city name or geographical coordinates in the search bar.
 
 ## Testing
 
@@ -78,24 +103,40 @@ Explain how to run the tests and view the results.
 npm test
 ```
 
-## Contributing
+## Technology Stack
 
-1. Fork the repository.
-2. Create your feature branch: `git checkout -b feature/your-feature`
-3. Commit your changes: `git commit -m 'Add some feature'`
-4. Push to the branch: `git push origin feature/your-feature`
-5. Open a pull request.
+- [React](https://reactjs.org/): JavaScript library for building user interfaces.
+- [OpenWeather API](https://openweathermap.org/api): API for accessing weather data.
+- [React Router](https://reactrouter.com/): Declarative routing for React applications.
+- [Zustand](https://zustand-demo.pmnd.rs/): A small, fast, and scalable state-management solution for React.
+- [Tailwind CSS](https://tailwindcss.com/): Utility-first CSS framework for rapid UI development.
+- [Vite](https://vitejs.dev/): Next-generation front-end tooling for faster development.
+- [Axios](https://axios-http.com/): Promise-based HTTP client for making API requests.
+- [Jest](https://jestjs.io/): Delightful JavaScript testing framework.
+- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/): Simple and complete testing utilities that encourage good testing practices.
 
+
+## Screenshots
+
+### Dashboard View
+![Dashboard](screenshots/dashboard.png)
+
+### Dark Mode
+![Dark Mode](screenshots/dark-mode.png)
+
+### Language Selection (Swahili)
+![Language Selection](screenshots/language-selection.png)
+
+### Temperature Selection (F)
+![Language Selection](screenshots/temperature-selection.png)
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Contact
 
-- **Author**: Your Name
-- **Email**: your-email@example.com
-- **GitHub**: [your-username](https://github.com/your-username)
+- **Author**: Ian Adera
+- **Email**: ianodad@gmail.com
+- **GitHub**: [ianodad](https://github.com/ianodad)
 
 ---
-
-Feel free to adjust the sections as per your project's requirements. This template provides a structured and comprehensive README for your GitHub project.
