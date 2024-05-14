@@ -18,17 +18,19 @@ const appStore = (set, get) => ({
     ? getWindowItem("temperature")
     : "°C",
   searchQuery: "",
-  setAvatar: () => {
-    set((state) => {
-      state.avatar = generatorAvatar();
-      setWindowItem("avatar", state.avatar);
-    });
-  },
+  // setAvatar: () => {
+  //   set((state) => {
+  //     state.avatar = generatorAvatar();
+  //     setWindowItem("avatar", state.avatar);
+  //   });
+  // },
   setUserName: {},
   setLanguage: () => {
     set((state) => {
+      console.log("language", state.language);
       state.language = state.language === "en" ? "sw" : "en";
       setWindowItem("language", state.language);
+      console.log("language", state.language);
     });
   },
   setSearchQuery: (query) => {

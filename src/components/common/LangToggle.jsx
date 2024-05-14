@@ -9,8 +9,7 @@ export const LangToggle = () => {
     language: state.language,
     setLanguage: state.setLanguage,
   }));
-  const [isChecked, setIsChecked] = useState(language === "en");
-  
+  const [isChecked, setIsChecked] = useState(language == "sw" ? true : false);
 
   const handleCheckboxChange = () => {
     setLanguage();
@@ -19,7 +18,7 @@ export const LangToggle = () => {
   };
 
   useEffect(() => {
-    if (language === "en") {
+    if (language === "sw") {
       setIsChecked(true);
     } else {
       setIsChecked(false);
