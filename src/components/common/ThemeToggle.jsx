@@ -33,21 +33,10 @@ export const ThemeToggle = () => {
             className={cn(
               "block h-8 w-14 rounded-full bg-gray-300 text-center",
               {
-                "bg-black": isChecked,
+                "bg-gray-700": isChecked,
               }
             )}
-          >
-            {/* {theme == "dark" && (
-              <span className="inline-block align-middle text-black float-left mt-1 ml-1">
-                dark
-              </span>
-            )}
-            {theme == "light" && (
-              <span className="inline-block align-middle text-black float-right mt-1 mr-1">
-                Light
-              </span>
-            )} */}
-          </div>
+          ></div>
           <div
             className={cn(
               "dot absolute left-1 top-1 flex h-6 w-6 items-center justify-center rounded-full  transition",

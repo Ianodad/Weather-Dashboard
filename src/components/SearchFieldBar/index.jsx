@@ -37,7 +37,7 @@ export const SearchFieldBar = () => {
       )}
       <button
         type="submit"
-        className="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        className="bg-blue-950 hover:bg-blue-900 text-white dark:bg-white dark:text-blue-950 font-bold py-2 px-4 rounded-full"
       >
         Search
       </button>

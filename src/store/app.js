@@ -7,7 +7,7 @@ import {
 
 // eslint-disable-next-line no-unused-vars
 const appStore = (set, get) => ({
-  avatar: getWindowItem("avatar") ? getWindowItem("avatar") : generatorAvatar(),
+  avatar: getWindowItem("avatar") ? getWindowItem("avatar") : null,
   userName: getWindowItem("userName")
     ? getWindowItem("userName")
     : generateUsername(),
@@ -18,7 +18,12 @@ const appStore = (set, get) => ({
     ? getWindowItem("temperature")
     : "°C",
   searchQuery: "",
-  setAvatar: {},
+  setAvatar: () => {
+    set((state) => {
+      state.avatar = generatorAvatar();
+      setWindowItem("avatar", state.avatar);
+    });
+  },
   setUserName: {},
   setLanguage: () => {
     set((state) => {

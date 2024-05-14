@@ -37,16 +37,7 @@ export const TemperatureToggle = () => {
               }
             )}
           >
-            {/* {theme == "dark" && (
-              <span className="inline-block align-middle text-black float-left mt-1 ml-1">
-                dark
-              </span>
-            )}
-            {theme == "light" && (
-              <span className="inline-block align-middle text-black float-right mt-1 mr-1">
-                Light
-              </span>
-            )} */}
+            
           </div>
           <div
             className={cn(
