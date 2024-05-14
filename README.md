@@ -21,7 +21,7 @@
     - [Dashboard View](#dashboard-view)
     - [Dark Mode](#dark-mode)
     - [Language Selection (Swahili)](#language-selection-swahili)
-    - [Temperature Selection (F)](#temperature-selection-f)
+    - [Temperature Selection (°F)](#temperature-selection-f)
   - [License](#license)
   - [Contact](#contact)
 
@@ -97,7 +97,7 @@ Open your browser and navigate to `http://localhost:3000` to view the applicatio
 
 ## Testing
 
-Explain how to run the tests and view the results.
+Explain how to run npthe tests and view the results.
 
 ```sh
 npm test
@@ -127,7 +127,7 @@ npm test
 ### Language Selection (Swahili)
 ![Language Selection](screenshots/language-selection.png)
 
-### Temperature Selection (F)
+### Temperature Selection (°F)
 ![Language Selection](screenshots/temperature-selection.png)
 ## License
 
