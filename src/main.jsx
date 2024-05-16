@@ -32,9 +32,6 @@ const router = createBrowserRouter(
       ],
     },
   ],
-  {
-    basename: "/Weather-Dashboard/",
-  }
 );
 
 ReactDOM.createRoot(document.getElementById("root")).render(
