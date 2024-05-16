@@ -9,30 +9,22 @@ import Dashboard from "@pages/Dashboard";
 import Settings from "@pages/Dashboard/Settings";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
-const router = createBrowserRouter(
-  [
-    {
-      path: "/",
-      element: <Layout />,
-      children: [
-        {
-          path: "/",
-          element: <DashboardLayout />,
-          children: [
-            {
-              path: "/",
-              element: <Dashboard />,
-            },
-            {
-              path: "/settings",
-              element: <Settings />,
-            },
-          ],
-        },
-      ],
-    },
-  ],
-);
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Layout />,
+    children: [
+      {
+        path: "/",
+        element: <Dashboard />,
+      },
+      {
+        path: "/settings",
+        element: <Settings />,
+      },
+    ],
+  },
+]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

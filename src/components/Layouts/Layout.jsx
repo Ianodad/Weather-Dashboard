@@ -5,6 +5,8 @@ import messages from "@utils/i18n";
 import useSkySiteStore from "@store";
 import { Outlet } from "react-router-dom";
 import { generatorAvatar } from "@utils";
+import { Navbar } from "@components";
+
 export const Layout = () => {
   const { language, theme, avatar } = useSkySiteStore((state) => ({
     language: state.language,
@@ -38,7 +40,15 @@ export const Layout = () => {
       messages={messages[language]}
       onError={intlError}
     >
-      <Outlet />
+      <div className="flex flex-col w-screen">
+        <div className="flex h-screen bg-gray-100">
+          {/* <Sidebar /> */}
+          <div className="flex flex-col flex-1 overflow-y-auto">
+            <Navbar />
+            <Outlet />
+          </div>
+        </div>
+      </div>
     </IntlProvider>
   );
 };
