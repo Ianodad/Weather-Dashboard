@@ -3,9 +3,9 @@ import { Navbar, Sidebar, MainContent, Layout } from "@components";
 
 function Dashboard() {
   return (
-    <>
+    <Layout>
       <MainContent />
-    </>
+    </Layout>
   );
 }
 

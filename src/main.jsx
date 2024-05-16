@@ -12,17 +12,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout />,
-    children: [
-      {
-        path: "",
-        element: <Dashboard />,
-      },
-      {
-        path: "/settings",
-        element: <Settings />,
-      },
-    ],
+    element: <Dashboard />,
   },
 ]);
 
