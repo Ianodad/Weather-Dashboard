@@ -7,7 +7,7 @@ import { Outlet } from "react-router-dom";
 import { generatorAvatar } from "@utils";
 import { Navbar } from "@components";
 
-export const Layout = () => {
+export const Layout = ({ children }) => {
   const { language, theme, avatar } = useSkySiteStore((state) => ({
     language: state.language,
     theme: state.theme,
@@ -45,7 +45,8 @@ export const Layout = () => {
           {/* <Sidebar /> */}
           <div className="flex flex-col flex-1 overflow-y-auto">
             <Navbar />
-            <Outlet />
+            {/* <Outlet /> */}
+            {children}
           </div>
         </div>
       </div>
