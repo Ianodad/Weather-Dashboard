@@ -33,7 +33,7 @@ const router = createBrowserRouter(
     },
   ],
   {
-    basename: "/Weather-Dashboard",
+    basename: "/Weather-Dashboard/",
   }
 );
 
